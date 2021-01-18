@@ -1,0 +1,261 @@
+openapi: 3.0.2
+info:
+  title: Web Server API
+  version: '1.0'
+  description: >-
+    This API provides details of communication between SAMAS and external event
+    servers.
+  contact:
+    name: Matrix Comsec Pvt. Ltd.
+  x-logo:
+    url: ''
+  license: null
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /GetToken:
+    description: To get the JWT Token from Server.
+    get:
+      tags: []
+      responses:
+        '200':
+          type: ''
+          description: ''
+          content:
+            application/json:
+              encoding: ''
+              schema:
+                type: string
+                format: ''
+                pattern: ''
+                enum: []
+              type: string
+              format: ''
+              pattern: ''
+              enum: []
+          x-last-modified: 1610526556826
+    x-last-modified: 1610526467320
+  /SendEvent:
+    post:
+      requestBody:
+        description: Event details will be send in Body.
+        content:
+          application/json:
+            schema:
+              title: Event
+              description: ''
+              required:
+                - eventcode
+                - eventname
+                - Datetime
+                - eventseverity
+                - containsimage
+              type: object
+              example: ''
+              properties: ''
+            title: Event
+            description: ''
+            required:
+              - eventcode
+              - eventname
+              - Datetime
+              - eventseverity
+              - containsimage
+            type: object
+            example: ''
+            properties: ''
+        required: true
+      tags:
+        - Event Data
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+        '500':
+          content:
+            application/json:
+              schema:
+                enum:
+                  - Invalid value in <ParaName>
+                  - Mandatory parameter <ParaName> missing>
+                type: string
+          description: Internal Server Error
+      security:
+        - key: []
+      operationId: post-SendEvent
+      summary: SendEvent
+      description: This API is used for sending 3rd Party events to SAMAS.
+    description: To send the event data to SAMAS Server.
+    x-last-modified: 1610527256920
+components:
+  schemas:
+    Event:
+      title: Event
+      description: ''
+      required:
+        - eventcode
+        - eventname
+        - Datetime
+        - eventseverity
+        - containsimage
+      type: object
+      properties:
+        eventcode:
+          type: number
+        eventname:
+          type: string
+        Datetime:
+          format: date-time
+          type: string
+        eventseverity:
+          maximum: 4
+          minimum: 1
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+          type: number
+        containsimage:
+          type: boolean
+        AdditionalData:
+          title: AdditionalData Structure
+          type: object
+          properties:
+            Field1:
+              type: string
+            Field2:
+              type: string
+            Field3:
+              type: string
+            Field4:
+              type: string
+            Field5:
+              type: string
+            Field6:
+              type: string
+            Field7:
+              type: string
+            Field8:
+              type: string
+            Field9:
+              type: string
+            Field10:
+              type: string
+            Field11:
+              type: string
+            Field12:
+              type: string
+            Field13:
+              type: string
+            Field14:
+              type: string
+            Field15:
+              type: string
+            Field16:
+              type: string
+            Field17:
+              type: string
+            Field18:
+              type: string
+            Field19:
+              type: string
+            Field20:
+              type: string
+          x-examples:
+            User Detected Event Additional Data:
+              Field1: garvit
+              Field2: R & D
+              Field3: Garvit Chugh
+              Field4: '50'
+              Field5: '23'
+              Field6: Male
+      x-examples: {}
+    AdditionalData:
+      title: AdditionalData Structure
+      type: object
+      properties:
+        Field1:
+          type: string
+        Field2:
+          type: string
+        Field3:
+          type: string
+        Field4:
+          type: string
+        Field5:
+          type: string
+        Field6:
+          type: string
+        Field7:
+          type: string
+        Field8:
+          type: string
+        Field9:
+          type: string
+        Field10:
+          type: string
+        Field11:
+          type: string
+        Field12:
+          type: string
+        Field13:
+          type: string
+        Field14:
+          type: string
+        Field15:
+          type: string
+        Field16:
+          type: string
+        Field17:
+          type: string
+        Field18:
+          type: string
+        Field19:
+          type: string
+        Field20:
+          type: string
+      x-examples:
+        User Detected Event Additional Data:
+          Field1: garvit
+          Field2: R & D
+          Field3: Garvit Chugh
+          Field4: '50'
+          Field5: '23'
+          Field6: Male
+  securitySchemes:
+    Basic Auth:
+      type: http
+      scheme: Basic
+      x-last-modified: 1610526414594
+    JWTAuth:
+      type: http
+      scheme: bearer
+      name: JWT
+      bearerFormat: JWT
+      in: header
+      description: |-
+        Example: 
+        > Authorization: Bearer <token>
+      x-last-modified: 1610526415068
+  responses: {}
+  parameters: {}
+  requestBodies:
+    SendEvent Request Body:
+      name: ''
+      required: false
+      content:
+        application/json:
+          example: ''
+          schema:
+            $ref: '#/components/schemas/Event'
+          encoding: ''
+      x-last-modified: 1610527398532
+tags:
+  - name: Event Data
+    description: Used for sending data of an event
+security: []
+externalDocs: null
